@@ -16,11 +16,31 @@ namespace GSS_Alert_Service
         /// </summary>
         /// <param name="To">To Address</param>
         /// <param name="From">From Address</param>
-        /// <param name="CC">CC Address(es)</param>
         /// <param name="Subject">Message Subject</param>
         /// <param name="MessageText">Message text with tokens</param>
         /// <param name="TokenValues">Tokens and definitions</param>
-        public static void QueueMessage(string To, string From, string[] CC, string Subject, string MessageText, Dictionary<string, string> Tokens)
+        public static void QueueMessage(string To, string From, string Subject, string MessageText, Dictionary<string, string> Tokens)
+        {
+            foreach (string key in Tokens.Keys)
+            {
+                MessageText = MessageText.Replace(key, Tokens[key]);
+            }
+
+            MailMessage message = new MailMessage(From, To, Subject, MessageText);
+
+            MessageQueue.Add(message);
+        }
+
+        /// <summary>
+        /// Adds a message to the mail queue for transmission
+        /// </summary>
+        /// <param name="To">To Address</param>
+        /// <param name="From">From Address</param>
+        /// <param name="Subject">Message Subject</param>
+        /// <param name="MessageText">Message text with tokens</param>
+        /// <param name="TokenValues">Tokens and definitions</param>
+        /// /// <param name="CC">CC Address(es)</param>
+        public static void QueueMessage(string To, string From, string Subject, string MessageText, Dictionary<string, string> Tokens, string[] CC)
         {
             foreach (string key in Tokens.Keys)
             {

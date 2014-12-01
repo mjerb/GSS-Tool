@@ -44,7 +44,7 @@ namespace GSS_Alert_Service
             {
                 DebugEnabled = bool.Parse(RegistryEngine.ReadRegistry("DebugEnabled"));
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 eventLog1.WriteEntry(string.Format("Information:/nDebug key not found, continuing at normal logging levels."), EventLogEntryType.Information, 1);
             }
@@ -227,7 +227,6 @@ namespace GSS_Alert_Service
             CommitTimer.Stop();
             AssistTimer.Stop();
             MailSystemTimer.Stop();
-            GUI.Dispose();
             eventLog1.WriteEntry(string.Format("GSS Alert Service stopped successfully after running for {0} minutes./n{1} cases and {2} assists were found./n{3} emails were sent.", runTimer.Elapsed.TotalMinutes, TotalCasesFound, TotalAssistsFound, TotalEmailsSent), EventLogEntryType.Information, 6);
 
             // Stop complete, set status to Stopped.
@@ -312,17 +311,5 @@ namespace GSS_Alert_Service
             // TODO: Add mail logic
         }
         #endregion Timer Events
-
-        private void notifyIcon1_MouseClick(object sender, System.Windows.Forms.MouseEventArgs e)
-        {
-            if (DebugEnabled)
-            {
-                eventLog1.WriteEntry(string.Format("Debug:/nGUI handler called!"), EventLogEntryType.Information, 0);
-            }
-            if (!GUI.Visible)
-                GUI.Show();
-            else
-                GUI.Hide();
-        }
     }
 }

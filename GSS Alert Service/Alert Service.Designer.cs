@@ -28,29 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Alert_Service));
-            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
-            Alert_Service.eventLog1 = new System.Diagnostics.EventLog();
-            ((System.ComponentModel.ISupportInitialize)(Alert_Service.eventLog1)).BeginInit();
-            // 
-            // notifyIcon1
-            // 
-            this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
-            this.notifyIcon1.Text = "notifyIcon1";
-            this.notifyIcon1.Visible = true;
-            this.notifyIcon1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseClick);
             // 
             // Alert_Service
             // 
             this.ServiceName = "Service1";
-            ((System.ComponentModel.ISupportInitialize)(Alert_Service.eventLog1)).EndInit();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.NotifyIcon notifyIcon1;
         public static System.Diagnostics.EventLog eventLog1;
     }
 }
